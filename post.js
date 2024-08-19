@@ -11,7 +11,8 @@ AWS.config.update({
         accessKeyId: process.env.AWS_ACCESS_KEY,
         secretAccessKey: process.env.AWS_SECRET_KEY,
     }
- }); 
+}); 
+
 
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
@@ -53,6 +54,6 @@ exports.handler = async (event) => {
         return response(201, params.Item);
     } catch (err) {
         console.error(err);
-        return response(500, 'Something went wrong');
+        return response(500, err);
     }
 };
